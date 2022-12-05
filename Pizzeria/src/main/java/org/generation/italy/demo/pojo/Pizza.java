@@ -30,6 +30,7 @@ public class Pizza {
 	@Min(value=0)
 	private int prezzo;
 	
+	public Pizza() { }
 	public Pizza(String nome, String descrizione, int prezzo) {
 		setNome(nome);
 		setDescrizione(descrizione);
