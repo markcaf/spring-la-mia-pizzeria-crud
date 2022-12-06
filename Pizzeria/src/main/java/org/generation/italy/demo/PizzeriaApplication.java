@@ -16,6 +16,7 @@ public class PizzeriaApplication implements CommandLineRunner {
 
 	@Autowired
 	private PizzaService pizzaService;
+	@Autowired
 	private DrinkService drinkService;
 	
 	public static void main(String[] args) {
