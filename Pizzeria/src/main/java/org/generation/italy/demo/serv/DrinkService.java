@@ -32,4 +32,8 @@ public class DrinkService {
 	public void deleteById(int id) {
 		drinkRepo.deleteById(id);
 	}
+	
+	public List<Drink> findByNome(String nome){
+		return drinkRepo.findByNomeContainingIgnoreCase(nome);
+	}
 }

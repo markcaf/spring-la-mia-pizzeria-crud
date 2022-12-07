@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
@@ -86,6 +87,18 @@ public class DrinkController {
 		drinkService.delete(drink);
 
 		return "redirect:/drinks";
+	}
+	
+	@GetMapping("/search")
+	public String getSearchDrinkByName(Model model, 
+			@RequestParam(name = "q", required = false) String query) {
+
+		List<Drink> drinks = query == null ? drinkService.findAll() : drinkService.findByNome(query); 
+
+		model.addAttribute("drinks", drinks);
+		model.addAttribute("query", query);
+
+		return "drinks-search";
 	}
 	
 }
