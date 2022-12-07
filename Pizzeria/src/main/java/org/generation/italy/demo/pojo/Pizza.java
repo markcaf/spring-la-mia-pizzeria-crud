@@ -1,10 +1,12 @@
 package org.generation.italy.demo.pojo;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -18,16 +20,18 @@ public class Pizza {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull(message="Il nome non può essere null")
+	@NotNull
 	@NotEmpty(message = "Il nome deve contenere qualcosa")
 	@Column(name="nome")
 	private String nome;
 	
+	@Lob
+	@Nullable
 	@Column(name="descrizione")
 	private String descrizione;
 	
-	@NotNull
-	@Min(value=0)
+	@NotNull(message = "Il prezzo non può essere vuoto")
+	@Min(value=1, message = "Il prezzo deve essere maggiore di zero")
 	private int prezzo;
 	
 	public Pizza() { }
