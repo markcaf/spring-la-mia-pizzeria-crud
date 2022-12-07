@@ -14,6 +14,17 @@
 		<h1 class="text-center">Modifica il drink</h1>
 		<div class="row justify-content-center">
 			<div class="col-6">
+			
+				<div th:if="${errors}">
+					<h3 class="text-danger">Errori:</h3>
+					<ul>
+						<li th:each="error : ${errors}" th:object="${error}">
+							[[*{defaultMessage}]]
+						</li>
+					</ul>
+				</div>
+
+			
 				<form method="POST" action="/drinks/drink/store" th:object="${drink}">
 					<input type="number" name="id" th:field="*{id}" class="d-none">
 					<label class="form-label">Nome</label><br>

@@ -14,6 +14,17 @@
 		<h1 class="text-center">Crea un nuovo drink</h1>
 		<div class="row justify-content-center">
 			<div class="col-6">
+			
+				<div th:if="${errors}">
+					<h3 class="text-danger">Errori:</h3>
+					<ul>
+						<li th:each="error : ${errors}" th:object="${error}">
+							[[*{defaultMessage}]]
+						</li>
+					</ul>
+				</div>
+
+			
 				<form method="POST" action="/drinks/drink/create" th:object="${drink}">
 					<label class="form-label">Nome</label><br>
 					<input class="form-control" type="text" name="nome" th:field="*{nome}">
